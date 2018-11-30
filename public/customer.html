@@ -16,8 +16,8 @@
 
     <div class="products" ng-repeat="product in products">
         <input type="checkbox">
-        <p>{{ product.name }}</p>
-        <p>{{ product.price }}</p>
+        <!--<p>{{ product.name }}</p>-->
+        <!--<p>{{ product.price }}</p>-->
     </div>
 
     <h2>Shopping Cart</h2>
@@ -29,7 +29,7 @@
 
             let products = [];
 
-            $scope.getProducts = function() {
+            $scope.getProductsInScope = function() {
                 $.getJSON("/get-products", function (data) {
                     console.log(data);
                     products = data.sort(compare);
@@ -40,7 +40,7 @@
 
         let product = [];
 
-        function getProducts {
+        function getProducts() {
             $.getJSON("/get-products", function (data) {
                 console.log(data);
                 products = data.sort(compare);
