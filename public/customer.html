@@ -38,6 +38,15 @@
 
         });
 
+        let product = [];
+
+        function getProducts {
+            $.getJSON("/get-products", function (data) {
+                console.log(data);
+                products = data.sort(compare);
+            });
+        }
+
     </script>
 
 </body>
