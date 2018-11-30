@@ -68,8 +68,13 @@
                 contentType: "application/json; charset=utf-8",
                 success: function(data, textStatus) {
                     console.log('Added: ' + data);
+                    getProducts();
                 }
             });
+        }
+
+        function removeProduct(prodNum) {
+            console.log("Product: " + prodNum);
         }
 
         function getProducts() {
@@ -79,10 +84,11 @@
 
                 for (let i = 0; i < products.length; i++) {
                     let newProd = "" +
-                        "<div class='product'>" +
+                        "<div class='product' id=\'prod" + i + "\'>" +
                         "<p>Name: " + products[i].name + "</p>" +
                         "<p>Price: " + products[i].price + "</p>" +
                         "<img src=\'" + products[i].url + "\' alt=''>" +
+                        "<button onclick='removeProduct(" + i + ")'>Remove</button>" +
                         "</div>";
                     console.log(newProd);
 
