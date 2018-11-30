@@ -70,25 +70,24 @@
                     console.log('Added: ' + data);
                 }
             });
-
-            // let newProd = "" +
-            //     "<div class='product'>" +
-            //     "<p>Name: " + name + "</p>" +
-            //     "<p>Price: " + price + "</p>" +
-            //     "<img src=\'" + url + "\' alt=''>" +
-            //     "</div>";
-            //
-            // console.log(newProd);
-            //
-            // prodList.innerHTML += newProd;
         }
 
         function getProducts() {
             $.getJSON("/get-products", function (data) {
                 console.log(data);
-
                 let products = data.sort(compare);
-                console.log(products);
+
+                for (let i = 0; i < products.length; i++) {
+                    let newProd = "" +
+                        "<div class='product'>" +
+                        "<p>Name: " + products[i].name + "</p>" +
+                        "<p>Price: " + products[i].price + "</p>" +
+                        "<img src=\'" + products[i].url + "\' alt=''>" +
+                        "</div>";
+                    console.log(newProd);
+
+                    prodList.innerHTML += newProd;
+                }
             });
         }
 
