@@ -60,6 +60,7 @@
             let product = {
                 name: name,
                 price: price,
+                ordered: 0,
                 url: url
             };
 
@@ -105,6 +106,7 @@
                         "<div class='product' id=\'prod" + i + "\'>" +
                         "<p>Name: " + products[i].name + "</p>" +
                         "<p>Price: " + products[i].price + "</p>" +
+                        "<p>Ordered: " + products[i].ordered + "</p>" +
                         "<img src=\'" + products[i].url + "\' alt=''>" +
                         "<button onclick='removeProduct(" + i + ")'>Remove</button>" +
                         "</div>";
