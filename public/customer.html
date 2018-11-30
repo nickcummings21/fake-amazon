@@ -62,7 +62,6 @@
                         "<input type='checkbox' value=\'prod" + i + "\' onclick='addToPurchase(" + i + ")'>" +
                         "<p>Name: " + products[i].name + "</p>" +
                         "<p>Price: " + products[i].price + "</p>" +
-                        "<p>Ordered: " + products[i].ordered + "</p>" +
                         "<img src=\'" + products[i].url + "\' alt=''>" +
                         "</div>";
 
@@ -86,8 +85,22 @@
             console.log(productsToPurchase);
         }
 
+        let shoppingListEl = document.getElementById("shopping-list");
+
         function submitPurchase() {
             console.log("Submit", productsToPurchase);
+            productsToPurchase.sort(compare);
+
+            for (let i = 0; i < productsToPurchase.length; i++) {
+                let newProd = "" +
+                    "<div class='product' id=\'prod" + i + "\'>" +
+                    "<p>Name: " + productsToPurchase[i].name + "</p>" +
+                    "<p>Price: " + productsToPurchase[i].price + "</p>" +
+                    "<img src=\'" + productsToPurchase[i].url + "\' alt=''>" +
+                    "</div>";
+
+                shoppingListEl.innerHTML += newProd;
+            }
         }
 
 
