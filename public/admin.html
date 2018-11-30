@@ -11,7 +11,7 @@
 
     <title>Admin</title>
 </head>
-<body>
+<body onload="getProducts()">
 
     <h1>Store Management Interface</h1>
 
@@ -65,6 +65,12 @@
             console.log(newProd);
 
             prodList.innerHTML += newProd;
+        }
+
+        function getProducts() {
+            $.getJSON("/get-products", function (data) {
+                console.log(data);
+            });
         }
 
     </script>
