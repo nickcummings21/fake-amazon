@@ -18,10 +18,8 @@
 
     <h2>Current Products</h2>
 
-    <div class="products" ng-repeat="product in products">
-        <input type="checkbox">
-        <!--<p>{{ product.name }}</p>-->
-        <!--<p>{{ product.price }}</p>-->
+    <div id="product-list">
+
     </div>
 
     <h2>Shopping Cart</h2>
@@ -42,14 +40,38 @@
 
         });
 
-        let product = [];
+        let prodListEl = document.getElementById("product-list");
+        let products = [];
 
         function getProducts() {
             $.getJSON("/get-products", function (data) {
                 console.log(data);
                 products = data.sort(compare);
             });
+
+            prodListEl.innerHTML = "";
+            for (let i = 0; i < products.length; i++) {
+                let newProd = "" +
+                    "<div class='product' id=\'prod" + i + "\'>" +
+                    "<input type='checkbox' value=\'prod" + i + "\'>" +
+                    "<p>Name: " + products[i].name + "</p>" +
+                    "<p>Price: " + products[i].price + "</p>" +
+                    "<p>Ordered: " + products[i].ordered + "</p>" +
+                    "<img src=\'" + products[i].url + "\' alt=''>" +
+                    "</div>";
+
+                prodListEl.innerHTML += newProd;
+            }
         }
+
+        function compare(a, b) {
+            if (a.name < b.name)
+                return -1;
+            if (a.name > b.name)
+                return 1;
+            return 0;
+        }
+
 
     </script>
 
