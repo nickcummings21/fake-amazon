@@ -85,7 +85,7 @@
             console.log(productsToPurchase);
         }
 
-        let shoppingListEl = document.getElementById("shopping-list");
+        let shoppingCartEl = document.getElementById("shopping-cart");
 
         function submitPurchase() {
             console.log("Submit", productsToPurchase);
@@ -99,7 +99,7 @@
                     "<img src=\'" + productsToPurchase[i].url + "\' alt=''>" +
                     "</div>";
 
-                shoppingListEl.innerHTML += newProd;
+                shoppingCartEl.innerHTML += newProd;
             }
         }
 
