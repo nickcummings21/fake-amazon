@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress UnnecessaryLocalVariableJS -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,7 +47,8 @@
         let prodPrice = document.getElementById("prod-price");
         let picUrl = document.getElementById("prod-pic");
 
-        let prodList = document.getElementById("prod-list");
+        let prodListEl = document.getElementById("prod-list");
+        let prodList = [];
 
         function addProduct(event) {
             event.preventDefault();
@@ -74,14 +76,30 @@
         }
 
         function removeProduct(prodNum) {
-            console.log("Product: " + prodNum);
+            const prodId = "prod" + prodNum;
+            console.log("Product: " + prodId);
+
+            const url = "/remove-product?name=" + prodList[prodNum].name;
+            $.ajax({
+                url: url,
+                type: "DELETE",
+                data: {},
+                contentType: "application/json; charset=utf-8",
+                success: function(data,textStatus) {
+                    console.log("DELETE: " + textStatus);
+                    getProducts();
+                }
+            });
         }
 
         function getProducts() {
+
             $.getJSON("/get-products", function (data) {
                 console.log(data);
                 let products = data.sort(compare);
+                prodList = products;
 
+                prodListEl.innerHTML = "";
                 for (let i = 0; i < products.length; i++) {
                     let newProd = "" +
                         "<div class='product' id=\'prod" + i + "\'>" +
@@ -90,9 +108,8 @@
                         "<img src=\'" + products[i].url + "\' alt=''>" +
                         "<button onclick='removeProduct(" + i + ")'>Remove</button>" +
                         "</div>";
-                    console.log(newProd);
 
-                    prodList.innerHTML += newProd;
+                    prodListEl.innerHTML += newProd;
                 }
             });
         }
