@@ -22,7 +22,13 @@
 
     </div>
 
+    <button onclick="submitPurchase()">Submit Purchase</button>
+
     <h2>Shopping Cart</h2>
+
+    <div id="shopping-cart">
+
+    </div>
 
     <script>
 
@@ -42,6 +48,7 @@
 
         let prodListEl = document.getElementById("product-list");
         let products = [];
+        let productsToPurchase = [];
 
         function getProducts() {
             $.getJSON("/get-products", function (data) {
@@ -52,7 +59,7 @@
                 for (let i = 0; i < products.length; i++) {
                     let newProd = "" +
                         "<div class='product' id=\'prod" + i + "\'>" +
-                        "<input type='checkbox' value=\'prod" + i + "\'>" +
+                        "<input type='checkbox' value=\'prod" + i + "\' onclick='addToPurchase(" + i + ")'>" +
                         "<p>Name: " + products[i].name + "</p>" +
                         "<p>Price: " + products[i].price + "</p>" +
                         "<p>Ordered: " + products[i].ordered + "</p>" +
@@ -70,6 +77,17 @@
             if (a.name > b.name)
                 return 1;
             return 0;
+        }
+
+        function addToPurchase(index) {
+            let checkIndex = productsToPurchase.indexOf(products[index]);
+            if (checkIndex !== -1) productsToPurchase.splice(checkIndex, 1);
+            else productsToPurchase.push(products[index]);
+            console.log(productsToPurchase);
+        }
+
+        function submitPurchase() {
+            console.log("Submit", productsToPurchase);
         }
 
 
