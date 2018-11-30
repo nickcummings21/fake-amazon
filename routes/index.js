@@ -44,7 +44,7 @@ router.get('/get-products', function (req, res, next) {
             console.log(products);
             res.json(products);
         }
-    });
+    }).sort( { name: 1 } );
 });
 
 router.delete('/remove-product', function (req, res) {
