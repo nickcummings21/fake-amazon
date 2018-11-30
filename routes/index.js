@@ -10,7 +10,7 @@ mongoose.connect('mongodb://0.0.0.0:27017/fake-amazon-products');
 const productSchema = mongoose.Schema({
     name: String,
     price: String,
-    ordered: Number,
+    ordered: { type: Number, default: 0 },
     url: String
 });
 
