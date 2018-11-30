@@ -1,0 +1,23 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+}
+
+.row {
+    margin: 1rem;
+}
+
+.product {
+    padding: .5rem;
+    width: 70%;
+    margin: 1rem auto;
+    border: 1px solid black;
+}
+
+.product img {
+    width: 100px;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="admin.css">
+
+    <title>Admin</title>
+</head>
+<body>
+
+    <h1>Store Management Interface</h1>
+
+    <form action="">
+        <div class="row">
+            <label for="prod-name">Product Name: </label>
+            <input type="text" id="prod-name">
+        </div>
+        <div class="row">
+            <label for="prod-price">Price: </label>
+            <input type="text" id="prod-price">
+        </div>
+        <div class="row">
+            <label for="prod-pic">Picture URL: </label>
+            <input type="text" id="prod-pic">
+        </div>
+        <div class="row">
+            <button type="submit" onclick="addProduct(event)">Add Product</button>
+        </div>
+    </form>
+
+    <h2>Current Products</h2>
+
+    <div id="prod-list">
+
+    </div>
+
+
+    <script>
+
+        let prodName = document.getElementById("prod-name");
+        let prodPrice = document.getElementById("prod-price");
+        let picUrl = document.getElementById("prod-pic");
+
+        let prodList = document.getElementById("prod-list");
+
+        function addProduct(event) {
+            event.preventDefault();
+
+            let name = prodName.value;
+            let price = prodPrice.value;
+            let url = picUrl.value;
+
+            let newProd = "" +
+                "<div class='product'>" +
+                "<p>Name: " + name + "</p>" +
+                "<p>Price: " + price + "</p>" +
+                "<img src=\'" + url + "\' alt=''>" +
+                "</div>";
+
+            console.log(newProd);
+
+            prodList.innerHTML += newProd;
+        }
+
+    </script>
+
+
+</body>
+</html>
