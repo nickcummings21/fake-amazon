@@ -55,16 +55,32 @@
             let price = prodPrice.value;
             let url = picUrl.value;
 
-            let newProd = "" +
-                "<div class='product'>" +
-                "<p>Name: " + name + "</p>" +
-                "<p>Price: " + price + "</p>" +
-                "<img src=\'" + url + "\' alt=''>" +
-                "</div>";
+            let product = {
+                name: name,
+                price: price,
+                url: url
+            };
 
-            console.log(newProd);
+            $.ajax({
+                url: '/add-product',
+                type: "POST",
+                data: JSON.stringify(product),
+                contentType: "application/json; charset=utf-8",
+                success: function(data, textStatus) {
+                    console.log('Added: ' + data);
+                }
+            });
 
-            prodList.innerHTML += newProd;
+            // let newProd = "" +
+            //     "<div class='product'>" +
+            //     "<p>Name: " + name + "</p>" +
+            //     "<p>Price: " + price + "</p>" +
+            //     "<img src=\'" + url + "\' alt=''>" +
+            //     "</div>";
+            //
+            // console.log(newProd);
+            //
+            // prodList.innerHTML += newProd;
         }
 
         function getProducts() {
