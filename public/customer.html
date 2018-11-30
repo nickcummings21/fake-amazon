@@ -91,6 +91,20 @@
             console.log("Submit", productsToPurchase);
             productsToPurchase.sort(compare);
 
+            let products = {
+                products: productsToPurchase
+            };
+
+            $.ajax({
+                url: '/order-products',
+                type: "POST",
+                data: JSON.stringify(products),
+                contentType: "application/json; charset=utf-8",
+                success: function(data, textStatus) {
+                    console.log('Ordered: ' + data);
+                }
+            });
+
             for (let i = 0; i < productsToPurchase.length; i++) {
                 let newProd = "" +
                     "<div class='product' id=\'prod" + i + "\'>" +

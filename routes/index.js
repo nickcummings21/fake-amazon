@@ -48,6 +48,21 @@ router.get('/get-products', function (req, res, next) {
     }).sort( { name: 1 } );
 });
 
+router.post('/order-products', function (req, res, next) {
+    console.log('Registering user');
+
+    let products = req.body.products;
+    for (let i = 0; i < products.length; i++) {
+
+        let query = { name: products[i].name };
+        Product.findOne(query, function (err, product) {
+           product.ordered += 1;
+           product.save();
+        });
+    }
+    res.sendStatus(200);
+});
+
 router.delete('/remove-product', function (req, res) {
     console.log('DELETE product route');
 
